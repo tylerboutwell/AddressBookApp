@@ -1,10 +1,12 @@
 public class Contact {
     private String name;
     private String phoneNumber;
+    private int idNumber;
 
-    public Contact(String name, String number) {
+    public Contact(String name, String number, int id) {
         this.name = name;
         this.phoneNumber = number;
+        this.idNumber = id;
     }
 
     public String getName() {
@@ -13,6 +15,10 @@ public class Contact {
 
     public String getPhoneNumber() {
         return this.phoneNumber;
+    }
+
+    public int getIdNumber() {
+        return this.idNumber;
     }
 
     public void setName (String name) {
@@ -24,7 +30,7 @@ public class Contact {
     }
 
     public String toString() {
-        return "Name: " + getName() + "Number: " + getPhoneNumber();
+        return "ID#" + getIdNumber() + "\nName: " + getName() + "\nNumber: " + getPhoneNumber() + "\n";
     }
 }
 

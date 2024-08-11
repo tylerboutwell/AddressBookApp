@@ -3,16 +3,18 @@ import java.util.Scanner;
 
 public class ContactList {
     private ArrayList<Contact> contactList;
+    private int currentIdNumber = 0;
 
     public ContactList() {
         this.contactList = new ArrayList<Contact>();
     }
 
     public void addContact(String name, String number) {
-        this.contactList.add(new Contact(name, number));
+        currentIdNumber += 1;
+        this.contactList.add(new Contact(name, number, currentIdNumber));
     }
 
-    public void deleteContact(String number) {
+    public void deleteContact(int number) {
         Contact searchedContact = searchByNumber(number);
         if (searchedContact == null) {
             System.out.println("Contact not found.");
@@ -22,24 +24,24 @@ public class ContactList {
         }
     }
 
-    public void editContact(String number, Scanner scan) {
+    public void editContact(int number, Scanner scan) {
         Contact searchedContact = searchByNumber(number);
         if (searchedContact == null) {
             System.out.println("Contact not found.");
         } else {
             System.out.println(searchedContact.getName() + " found!");
             System.out.println("Enter new name: ");
-            String newName = scan.next();
+            String newName = scan.nextLine();
             System.out.println("Enter new number: ");
-            String newNumber = scan.next();
+            String newNumber = scan.nextLine();
             searchedContact.setName(newName);
             searchedContact.setPhoneNumber(newNumber);
         }
     }
 
-    private Contact searchByNumber(String number) {
+    private Contact searchByNumber(int number) {
         for (int i = 0; i < contactList.size(); i++) {
-            if (contactList.get(i).getPhoneNumber().equals(number)) {
+            if (contactList.get(i).getIdNumber() == number) {
                 return contactList.get(i);
             }
         }

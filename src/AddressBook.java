@@ -4,10 +4,11 @@ public class AddressBook {
     public static void main(String[] args) {
         ContactList userContactList = new ContactList();
         Scanner userInput = new Scanner(System.in);
+        String input;
 
         while (true) {
             System.out.println("Select - [print] [add] [delete] [edit] [exit]");
-            String input = userInput.nextLine();
+            input = userInput.nextLine();
 
             if (input.toLowerCase().equals("print")) {
                 userContactList.printContacts();
@@ -22,15 +23,16 @@ public class AddressBook {
                 System.out.println(personName + " successfully added to your contacts!");
 
             } else if (input.toLowerCase().equals("delete")) {
-                System.out.println("Person's phone number?");
-                String personNumber = userInput.nextLine();
+                System.out.println("Contact's ID number?");
+                int personNumber = userInput.nextInt();
                 userContactList.deleteContact(personNumber);
+                userInput.nextLine();
 
             } else if (input.toLowerCase().equals("edit")) {
-                System.out.println("Person's phone number?");
-                String personNumber = userInput.nextLine();
+                System.out.println("Contact's ID number?");
+                int personNumber = userInput.nextInt();
+                userInput.nextLine();
                 userContactList.editContact(personNumber, userInput);
-
             } else if (input.toLowerCase().equals("exit")) {
                 System.out.println("Exiting");
                 break;
